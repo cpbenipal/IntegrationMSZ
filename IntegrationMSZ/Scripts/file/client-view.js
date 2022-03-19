@@ -5,26 +5,23 @@ ZoomMtg.i18n.load('en-US');
 ZoomMtg.i18n.reload('en-US');
 
 ZoomMtg.setZoomJSLib('https://source.zoom.us/2.3.0/lib', '/av');
-
-// setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
-var signatureEndpoint = '';
-var apiKey = 'n26GV8IFSMWdg0GDNoDz2Q';
+var apiKey = '';
 var meetingNumber = '';
- 
 var leaveUrl = 'https://zoom.us';
 var userName = 'mailsforbeni';
 var userEmail = 'mailsforbeni@gmail.com'
 var passWord = '';
-// pass in the registrant's token if your meeting or webinar requires registration. More info here:
-// Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/client-view/meetings#join-registered
-// Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/client-view/webinars#join-registered
-var registrantToken = '';
-
-
 function getSignature(role) {
-   
-    meetingNumber = $.trim($('#id').text());
-    passWord = $.trim($('#password').text());
+
+    if (role == 1) {
+        meetingNumber = $.trim($('#id').text());
+        passWord = $.trim($('#password').text());
+    }
+    else {
+        userName = $.trim($('#name').val());
+        meetingNumber = $.trim($('#id').val());
+        passWord = $.trim($('#password').val());
+    }
     $.ajax({
         type: "GET",
         url: window.location.origin + "/StartZoom/GenerateSignature",
@@ -32,17 +29,17 @@ function getSignature(role) {
         contentType: "application/json",
         data: { "meetingnumber": meetingNumber, 'role': role },
         success: function (data) {
-            ;
+
             startMeeting(data);
         }
     });
 }
 
+function startMeeting(dt) {
+    apiKey = dt[0];
+    signature = dt[1];
 
-function startMeeting(signature) {
-    
     document.getElementById('zmmtg-root').style.display = 'block'
-
     ZoomMtg.init({
         leaveUrl: leaveUrl,
         success: (success) => {

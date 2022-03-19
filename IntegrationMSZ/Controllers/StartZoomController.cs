@@ -68,6 +68,10 @@ namespace IntegrationMSZ.Controllers
         {
             return View(meeting);
         }
+        public ActionResult Student() 
+        {
+            return View();
+        }
         /// <summary>
         /// Generate Signature for base64Salth before start meeting.
         /// Role : 1 -> (Teacher) Create meeting , 0 -> (Student) Join meeting
@@ -101,7 +105,10 @@ namespace IntegrationMSZ.Controllers
                 {
                     SignatureText = System.Convert.ToBase64String(tokenBytes).TrimEnd(padding)
                 };
-                return this.Json(sig.SignatureText, JsonRequestBehavior.AllowGet);
+                List<string> vals = new List<string>();
+                vals.Add(JwtKey);
+                vals.Add(sig.SignatureText);
+                return this.Json(vals, JsonRequestBehavior.AllowGet);
             }           
         }
         long ToTimestamp(DateTime value)

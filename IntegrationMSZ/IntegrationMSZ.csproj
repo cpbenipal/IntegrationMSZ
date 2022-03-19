@@ -221,6 +221,7 @@
     <Content Include="Views\StartZoom\Index.cshtml" />
     <Content Include="Views\ZoomJoin\Index.cshtml" />
     <Content Include="Views\StartZoom\ScheduleMeeting.cshtml" />
+    <Content Include="Views\StartZoom\Student.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
