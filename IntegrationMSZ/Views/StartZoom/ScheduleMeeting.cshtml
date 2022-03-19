@@ -1,0 +1,114 @@
+﻿@model IntegrationMSZ.Models.ScheduleMeetingModel
+
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+<h2>ScheduleMeeting</h2>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Zoom Meeting</title>
+
+    <!-- For Client View -->
+    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.3.0/css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.3.0/css/react-select.css" />
+
+
+    <link href="~/Scripts/file/styles.css" rel="stylesheet" />
+
+    <!-- Origin Trials to enable Gallery View in Chrome/Edge -->
+    <!-- More Info: https://marketplace.zoom.us/docs/sdk/overview/improve-performance -->
+    <!-- SharedArrayBuffers in non-isolated pages on Desktop platforms -->
+    <meta http-equiv="origin-trial" content="">
+</head>
+<body>
+
+    <div>
+        <h4>ScheduleMeetingModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.topic)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.topic)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.id)
+            </dt>
+
+            <dd id="id">
+                @Html.DisplayFor(model => model.id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.password)
+            </dt>
+
+            <dd id="password">
+                @Html.DisplayFor(model => model.password)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.start_time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.start_time)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.duration)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.duration)
+            </dd>
+
+            @*<dd>
+                    @Html.Action(model => model.join_url)
+                </dd>
+                <dd>Or</dd>*@
+        </dl>
+    </div>
+
+    <main>
+        <h1>Zoom Meeting</h1>
+
+        <!-- For Component View -->
+        <div id="meetingSDKElement">
+            <!-- Zoom Meeting SDK Rendered Here -->
+        </div>
+
+        <button onClick="getSignature(1)">Start Meeting</button>
+        <button onClick="getSignature(0)">Join Meeting</button>
+    </main>
+
+    <!-- For Component and Client View -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://source.zoom.us/2.3.0/lib/vendor/react.min.js"></script>
+    <script src="https://source.zoom.us/2.3.0/lib/vendor/react-dom.min.js"></script>
+    <script src="https://source.zoom.us/2.3.0/lib/vendor/redux.min.js"></script>
+    <script src="https://source.zoom.us/2.3.0/lib/vendor/redux-thunk.min.js"></script>
+    <script src="https://source.zoom.us/2.3.0/lib/vendor/lodash.min.js"></script>
+
+    <!-- For Client View -->
+    <script src="https://source.zoom.us/zoom-meeting-2.3.0.min.js"></script>
+    <script src="~/Scripts/file/client-view.js"></script>
+
+
+    <!-- For Component View -->
+    <!-- <script src="https://source.zoom.us/2.3.0/zoom-meeting-embedded-2.3.0.min.js"></script> -->
+    <!-- <script type="text/javascript" src="component-view.js"></script> -->
+
+</body>
+</html>
