@@ -21,8 +21,7 @@ namespace IntegrationMSZ.Controllers
         protected string ApiSecret = System.Configuration.ConfigurationManager.AppSettings["apiSecret"];
         protected string JwtKey = System.Configuration.ConfigurationManager.AppSettings["jwtKey"];
         protected string JwtSecret = System.Configuration.ConfigurationManager.AppSettings["jwtSecret"];
-        protected string Redirect_uri = System.Configuration.ConfigurationManager.AppSettings["redirect_uri"];
-        protected string SiteUrl = System.Configuration.ConfigurationManager.AppSettings["site_url"];
+        protected string Redirect_uri = "";
         protected string UserName = System.Configuration.ConfigurationManager.AppSettings["user_name"];
 
         public ActionResult Index()
@@ -47,7 +46,7 @@ namespace IntegrationMSZ.Controllers
                 join_before_host = false,
                 mute_upon_entry = false,
                 audio = "both",
-                registrants_email_notification = false
+                registrants_email_notification = true
             };
 
             string uri = string.Format("https://api.zoom.us");
@@ -126,7 +125,7 @@ namespace IntegrationMSZ.Controllers
 
             var token = new JwtSecurityToken(
                 issuer: JwtKey,
-                audience: SiteUrl,
+                audience: Redirect_uri,
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(90),
                 signingCredentials: new SigningCredentials(signinkey, SecurityAlgorithms.HmacSha256)

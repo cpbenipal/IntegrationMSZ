@@ -7,9 +7,9 @@ ZoomMtg.i18n.reload('en-US');
 ZoomMtg.setZoomJSLib('https://source.zoom.us/2.3.0/lib', '/av');
 var apiKey = '';
 var meetingNumber = '';
-var leaveUrl = 'https://zoom.us';
-var userName = 'mailsforbeni';
-var userEmail = 'mailsforbeni@gmail.com'
+var leaveUrl = window.location.origin;
+var userName = 'chandlevdev';
+var userEmail = 'chandlevdev@gmail.com'
 var passWord = '';
 function getSignature(role) {
 
